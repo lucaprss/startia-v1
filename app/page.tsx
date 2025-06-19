@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, Mail, Facebook, Globe } from "lucide-react"
+import { ArrowRight, Facebook, Globe, ImageIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 export default function StartiaLanding() {
@@ -29,7 +29,7 @@ export default function StartiaLanding() {
       const data = await res.json()
       setResult(data)
 
-      // Add navigation logic here
+      // Navigate to tunnel page
       if (data.slug) {
         router.push(`/tunnel/${data.slug}`)
       }
@@ -68,7 +68,7 @@ export default function StartiaLanding() {
             </h1>
 
             <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-              Décris ton produit digital, STARTIA s'occupe du reste.
+              Décris ton produit digital, STARTIA génère une page complète avec image hero personnalisée.
             </p>
 
             {/* Input Section */}
@@ -93,153 +93,76 @@ export default function StartiaLanding() {
               </div>
             </div>
 
-            {/* Preview Section - Résultats dynamiques */}
-            {result && (
-              <div className="max-w-6xl mx-auto mb-12">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-8">Voici ce que STARTIA a généré pour vous</h2>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {/* Landing Page Preview */}
-                  <Card className="bg-white/80 backdrop-blur-sm border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Globe className="h-5 w-5 text-purple-600" />
-                        <h3 className="font-semibold text-gray-800">Landing Page</h3>
-                      </div>
-
-                      <div className="bg-gray-50 rounded-lg p-4 mb-4 border-2 border-dashed border-gray-200">
-                        <h4 className="font-bold text-lg mb-2 text-gray-900">{result.title}</h4>
-                        <p className="text-sm text-gray-600 mb-3">{result.story}</p>
-                        <div className="text-xs text-gray-700" dangerouslySetInnerHTML={{ __html: result.html }} />
-                      </div>
-
-                      <p className="text-xs text-gray-500">Page de vente générée automatiquement</p>
-                    </CardContent>
-                  </Card>
-
-                  {/* Email Preview */}
-                  <Card className="bg-white/80 backdrop-blur-sm border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Mail className="h-5 w-5 text-blue-600" />
-                        <h3 className="font-semibold text-gray-800">Email Marketing</h3>
-                      </div>
-
-                      <div className="bg-blue-50 rounded-lg p-4 mb-4 border border-blue-200">
-                        <h4 className="font-bold text-sm mb-2 text-blue-900">
-                          {result.email?.subject || "Email généré"}
-                        </h4>
-                        <p className="text-xs text-blue-800">{result.email?.body || result.email}</p>
-                      </div>
-
-                      <p className="text-xs text-gray-500">Email personnalisé et persuasif</p>
-                    </CardContent>
-                  </Card>
-
-                  {/* Facebook Ad Preview */}
-                  <Card className="bg-white/80 backdrop-blur-sm border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 md:col-span-2 lg:col-span-1">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Facebook className="h-5 w-5 text-blue-600" />
-                        <h3 className="font-semibold text-gray-800">Publicité Facebook</h3>
-                      </div>
-
-                      <div className="bg-gray-100 rounded-lg p-3 mb-4">
-                        <div className="bg-gradient-to-r from-pink-200 to-purple-200 rounded-md h-24 mb-3 flex items-center justify-center">
-                          <span className="text-xs text-gray-600">Visuel accrocheur</span>
-                        </div>
-                        <p className="text-xs font-medium text-gray-800 mb-1">{result.ad}</p>
-                      </div>
-
-                      <p className="text-xs text-gray-500">Publicité optimisée pour Facebook</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            )}
-
             {/* Preview Section - Exemples statiques */}
-            {!result && (
-              <div className="max-w-6xl mx-auto mb-12">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-8">
-                  Voici ce que STARTIA peut générer pour vous
-                </h2>
+            <div className="max-w-6xl mx-auto mb-12">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-8">Voici ce que STARTIA peut générer pour vous</h2>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {/* Landing Page Preview */}
-                  <Card className="bg-white/80 backdrop-blur-sm border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Globe className="h-5 w-5 text-purple-600" />
-                        <h3 className="font-semibold text-gray-800">Landing Page</h3>
-                      </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Landing Page Preview */}
+                <Card className="bg-white/80 backdrop-blur-sm border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Globe className="h-5 w-5 text-purple-600" />
+                      <h3 className="font-semibold text-gray-800">Page HTML Complète</h3>
+                    </div>
 
-                      <div className="bg-gray-50 rounded-lg p-4 mb-4 border-2 border-dashed border-gray-200">
-                        <h4 className="font-bold text-lg mb-2 text-gray-900">🌟 Peau Parfaite en 30 Jours</h4>
-                        <p className="text-sm text-gray-600 mb-3">
-                          Découvrez les secrets d'une alimentation qui transforme votre peau. Fini l'acné, bonjour la
-                          confiance ! Plus de 10 000 personnes ont déjà retrouvé une peau éclatante grâce à nos méthodes
-                          naturelles.
-                        </p>
-                        <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white rounded-lg">
-                          Acheter maintenant - 29€
-                        </Button>
-                      </div>
-
-                      <p className="text-xs text-gray-500">
-                        Page de vente optimisée avec storytelling et call-to-action
+                    <div className="bg-gray-50 rounded-lg p-4 mb-4 border-2 border-dashed border-gray-200">
+                      <h4 className="font-bold text-lg mb-2 text-gray-900">🌟 Page de vente professionnelle</h4>
+                      <p className="text-sm text-gray-600 mb-3">
+                        Une page HTML/CSS complète avec design moderne, sections optimisées pour la conversion, et
+                        responsive design.
                       </p>
-                    </CardContent>
-                  </Card>
+                      <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white rounded-lg">
+                        Voir la démo
+                      </Button>
+                    </div>
 
-                  {/* Email Preview */}
-                  <Card className="bg-white/80 backdrop-blur-sm border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Mail className="h-5 w-5 text-blue-600" />
-                        <h3 className="font-semibold text-gray-800">Email Marketing</h3>
+                    <p className="text-xs text-gray-500">Page de vente complète prête à déployer</p>
+                  </CardContent>
+                </Card>
+
+                {/* Image Generation Preview */}
+                <Card className="bg-white/80 backdrop-blur-sm border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <ImageIcon className="h-5 w-5 text-blue-600" />
+                      <h3 className="font-semibold text-gray-800">Image Hero Générée</h3>
+                    </div>
+
+                    <div className="bg-blue-50 rounded-lg p-4 mb-4 border border-blue-200">
+                      <h4 className="font-bold text-sm mb-2 text-blue-900">🖼️ Image personnalisée</h4>
+                      <p className="text-xs text-blue-800 mb-2">
+                        Image hero générée automatiquement, adaptée à votre produit, responsive et optimisée.
+                      </p>
+                      <p className="text-xs text-blue-700">Max 600px, arrondie avec ombre douce !</p>
+                    </div>
+
+                    <p className="text-xs text-gray-500">Image hero générée par IA</p>
+                  </CardContent>
+                </Card>
+
+                {/* Design Preview */}
+                <Card className="bg-white/80 backdrop-blur-sm border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 md:col-span-2 lg:col-span-1">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Facebook className="h-5 w-5 text-blue-600" />
+                      <h3 className="font-semibold text-gray-800">Couleurs Thématiques</h3>
+                    </div>
+
+                    <div className="bg-gray-100 rounded-lg p-3 mb-4">
+                      <div className="bg-gradient-to-r from-pink-200 to-purple-200 rounded-md h-24 mb-3 flex items-center justify-center">
+                        <span className="text-xs text-gray-600">Couleurs adaptées</span>
                       </div>
+                      <p className="text-xs font-medium text-gray-800 mb-1">
+                        🎨 Couleurs automatiquement adaptées au thème de votre produit
+                      </p>
+                    </div>
 
-                      <div className="bg-blue-50 rounded-lg p-4 mb-4 border border-blue-200">
-                        <h4 className="font-bold text-sm mb-2 text-blue-900">✨ Sarah, votre peau vous remerciera</h4>
-                        <p className="text-xs text-blue-800 mb-2">
-                          Imaginez-vous dans 30 jours avec une peau rayonnante, sans imperfections. Notre guide révèle
-                          les aliments secrets qui éliminent l'acné naturellement.
-                        </p>
-                        <p className="text-xs text-blue-700">Offre limitée : -40% jusqu'à minuit !</p>
-                      </div>
-
-                      <p className="text-xs text-gray-500">Séquence d'emails personnalisés et persuasifs</p>
-                    </CardContent>
-                  </Card>
-
-                  {/* Facebook Ad Preview */}
-                  <Card className="bg-white/80 backdrop-blur-sm border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 md:col-span-2 lg:col-span-1">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-2 mb-4">
-                        <Facebook className="h-5 w-5 text-blue-600" />
-                        <h3 className="font-semibold text-gray-800">Publicité Facebook</h3>
-                      </div>
-
-                      <div className="bg-gray-100 rounded-lg p-3 mb-4">
-                        <div className="bg-gradient-to-r from-pink-200 to-purple-200 rounded-md h-24 mb-3 flex items-center justify-center">
-                          <span className="text-xs text-gray-600">Visuel accrocheur</span>
-                        </div>
-                        <p className="text-xs font-medium text-gray-800 mb-1">
-                          🔥 STOP à l'acné ! Cette méthode naturelle fait des miracles
-                        </p>
-                        <p className="text-xs text-gray-600">
-                          Découvrez comment Marie a éliminé son acné en changeant simplement son alimentation. Résultats
-                          garantis ou remboursé !
-                        </p>
-                      </div>
-
-                      <p className="text-xs text-gray-500">Publicités ciblées avec visuels et copy optimisés</p>
-                    </CardContent>
-                  </Card>
-                </div>
+                    <p className="text-xs text-gray-500">Design intelligent et thématique</p>
+                  </CardContent>
+                </Card>
               </div>
-            )}
+            </div>
           </div>
         </main>
 
